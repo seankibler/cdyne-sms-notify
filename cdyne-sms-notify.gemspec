@@ -5,33 +5,44 @@
 
 Gem::Specification.new do |s|
   s.name = %q{cdyne-sms-notify}
-  s.version = "0.0.1"
+  s.version = "0.2.0"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["Sean Kibler"]
-  s.date = %q{2010-03-25}
+  s.date = %q{2010-03-30}
   s.email = %q{github@skiblerspot.net}
   s.extra_rdoc_files = [
     "History.txt",
      "License.txt"
   ]
   s.files = [
-    "History.txt",
+    ".gitignore",
+     "History.txt",
      "License.txt",
      "README.textile",
      "Rakefile",
+     "cdyne-sms-notify.gemspec",
      "lib/sms_notify.rb",
+     "lib/sms_notify/api.rb",
+     "lib/sms_notify/api/command.rb",
+     "lib/sms_notify/response.rb",
      "lib/sms_notify/version.rb",
+     "spec/api_spec.rb",
+     "spec/response_spec.rb",
+     "spec/sms_notify_spec.rb",
      "spec/spec.opts",
      "spec/spec_helper.rb"
   ]
   s.homepage = %q{http://cdyne-sms-notify.github.com}
   s.rdoc_options = ["--charset=UTF-8"]
   s.require_paths = ["lib"]
-  s.rubygems_version = %q{1.3.5}
+  s.rubygems_version = %q{1.3.6}
   s.summary = %q{Ruby interface to the CDYNE SMSNotify! service.}
   s.test_files = [
-    "spec/spec_helper.rb"
+    "spec/response_spec.rb",
+     "spec/spec_helper.rb",
+     "spec/sms_notify_spec.rb",
+     "spec/api_spec.rb"
   ]
 
   if s.respond_to? :specification_version then

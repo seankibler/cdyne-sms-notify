@@ -1,0 +1,7 @@
+== 0.2.0
+* Implement a Command class that handles sending commands using escaped urls to the api
+* Implement a Api class that exposes the available operations on the CDYNE SmsNotify! api
+* Implement a Response class that converts CDYNE SmsNotify! xml response to a Ruby like hash
+
+== 0.0.1
+* Project is born
