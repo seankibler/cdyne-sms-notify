@@ -1,4 +1,8 @@
 module SmsNotify
+
+  class MessageStatus < OpenStruct
+  end
+
   class Api
     attr_accessor :license_key
     

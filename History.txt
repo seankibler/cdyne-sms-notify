@@ -1,3 +1,6 @@
+== 0.2.1
+* Implement a MessageStatus class that is basically an OpenStruct object
+
 == 0.2.0
 * Implement a Command class that handles sending commands using escaped urls to the api
 * Implement a Api class that exposes the available operations on the CDYNE SmsNotify! api

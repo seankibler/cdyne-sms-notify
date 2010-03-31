@@ -1,6 +1,3 @@
-# To change this template, choose Tools | Templates
-# and open the template in the editor.
-
 require File.expand_path(File.dirname(__FILE__) + '/spec_helper')
 
 describe "SmsNotify MessageStatus" do
@@ -8,9 +5,9 @@ describe "SmsNotify MessageStatus" do
     @message_status = SmsNotify::MessageStatus.new
   end
 
-  it "should contain attributes that describe an SmsNotify! message" do
-    api_attrs = [:status_code, :status_text, :completed, :text_id, :demo, :scheduled_time, :responded]
-    SmsNotify::MessageStatus.new.should == api_attrs
+  it "should have methods for any hash attributes passed in" do
+    SmsNotify::MessageStatus.new(:foo => 'bar').foo.should == 'bar'
+    SmsNotify::MessageStatus.new(:bolt_action => 'rifle').bolt_action.should == 'rifle'
   end
 end
 
