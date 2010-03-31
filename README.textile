@@ -2,3 +2,8 @@ h1. CDYNE SMS Notify
 
 This gem provides a Ruby interface to the CDYNE SMSNotify! HTTP API using GET and POST methods.
 A SOAP class may be implemented at some point.
+
+h2. TODO
+* Support a proxy connection
+* RDoc documentation
+* Usage documentation
