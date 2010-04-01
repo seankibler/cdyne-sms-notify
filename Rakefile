@@ -28,3 +28,6 @@ Rcov::RcovTask.new do |t|
   # t.verbose = true     # uncomment to see the executed command
 end
 
+task :doc do
+	system("rdoc -aN")
+end
