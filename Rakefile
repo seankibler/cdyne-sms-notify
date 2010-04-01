@@ -12,7 +12,7 @@ begin
     gemspec.authors = ["Sean Kibler"]
     gemspec.extra_rdoc_files = %w{History.txt License.txt}
     gemspec.has_rdoc = true
-    gemspec.version = SMSNotify::VERSION
+    gemspec.version = SmsNotify::Version
 	end
 rescue LoadError
 	puts "Jeweler not found, it can be installed with the following command:\n\ngem install jeweler"

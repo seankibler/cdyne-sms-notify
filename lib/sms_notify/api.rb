@@ -1,3 +1,4 @@
+require 'ostruct'
 module SmsNotify
 
   # A lazy class that uses OpenStruct
@@ -32,17 +33,14 @@ module SmsNotify
     # Returns a <tt>MessageStatus</tt> if successfull and an error code if false.
     def send_message(phone_number, message)
       command = Command.new('SendSMSBasic', license_key)
-      handle_response(command.execute({:PhoneNumber => phone_number, :Message => message}))
+      Response.parse(command.execute({:PhoneNumber => phone_number, :Message => message}))
     end
 
-    private
-    def handle_response(response_body)
-      response_hash = Response.parse(response_body)
-      if response_hash and MessageStatus.is_an_error?(response_hash.status_code)
-
-      end
+    def message_status(text_id)
+      command = Command.new('GetSMSStatus', license_key)
+      Response.parse(command.execute({:TextID => text_id}))
     end
-
+    
     Dir.glob(File.join(File.dirname(__FILE__), '/api/*')).each do |lib|
       require lib
     end
