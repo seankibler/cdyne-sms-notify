@@ -1,4 +1,7 @@
 require 'rubygems'
+require 'rcov/rcovtask'
+require "spec"
+require "spec/rake/spectask"
 require File.join(File.dirname(__FILE__), *%w[lib sms_notify version])
 
 begin
@@ -20,5 +23,8 @@ end
 
 task :default => :spec
 
-require "spec"
-require "spec/rake/spectask"
+Rcov::RcovTask.new do |t|
+  t.test_files = FileList['spec/*.rb']
+  # t.verbose = true     # uncomment to see the executed command
+end
+
