@@ -24,12 +24,12 @@ module SmsNotify
       end
     
       it "should return an encoded url for the requested command and parameters" do
-        url = @command.add_params(:fu => 'bar', :sna => 'fu')
+        url = @command.build_url(:fu => 'bar', :sna => 'fu')
         url.should == URI.parse('https://ws.cdyne.com/SmsWs/SMS.asmx/cmdname?LicenseKey=key&fu=bar&sna=fu')
       end
 
       it "should return an encoded url with invalid url characters escaped" do
-        url = @command.add_params(:fu => 'b a r', :sna => 'f&u')
+        url = @command.build_url(:fu => 'b a r', :sna => 'f&u')
         url.should == URI.parse('https://ws.cdyne.com/SmsWs/SMS.asmx/cmdname?LicenseKey=key&fu=b+a+r&sna=f%26u')
       end
     end
