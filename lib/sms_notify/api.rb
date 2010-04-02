@@ -25,20 +25,20 @@ module SmsNotify
       @license_key = license_key
     end
 
-    # Implements <tt>SendSMSBasic[http://ws.cdyne.com/SmsWS/SMS.asmx?op=SendSMSBasic]</tt>.
+    # Implements +SendSMSBasic+[http://ws.cdyne.com/SmsWS/SMS.asmx?op=SendSMSBasic].
     #
     # Example:
     #   @api.send_message('1234567890', 'Hello world')
     #
-    # Returns a <tt>MessageStatus</tt> if successfull and an error code if false.
+    # Returns an +MessageStatus+ object.
     def send_message(phone_number, message)
       command = Command.new('SendSMSBasic', license_key)
-      Response.parse(command.execute({:PhoneNumber => phone_number, :Message => message}))
+      MessageStatus.new(Response.parse(command.execute({:PhoneNumber => phone_number, :Message => message})))
     end
 
     def message_status(text_id)
       command = Command.new('GetSMSStatus', license_key)
-      Response.parse(command.execute({:TextID => text_id}))
+      MessageStatus.new(Response.parse(command.execute({:TextID => text_id})))
     end
     
     Dir.glob(File.join(File.dirname(__FILE__), '/api/*')).each do |lib|
