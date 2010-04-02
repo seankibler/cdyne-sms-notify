@@ -23,9 +23,10 @@ end
 
 task :default => :spec
 
-Rcov::RcovTask.new do |t|
-  t.test_files = FileList['spec/*.rb']
-  # t.verbose = true     # uncomment to see the executed command
+Spec::Rake::SpecTask.new('run_tests_with_rcov') do |t|
+	t.spec_files = FileList['spec/**/*.rb']
+	t.rcov = true
+	#t.rcov_opts = ['--exclude', '']
 end
 
 task :doc do
