@@ -5,15 +5,8 @@ module SmsNotify
   class Response
     class << self
       # Converts XML into a Ruby-like hash
-      # ignoring "xmlns" key
-      #-- XXX - Should only keep keys
-      # that are a part of CDYNE SmsNotify!
-      # API, others should be ignored. In other words
-      # a whitelist approach should be taken instead of
-      # a blacklist approach.
       def parse(xml_response_body)
         response_hash = xml_to_hash(xml_response_body)
-        response_hash.first[1].delete("xmlns")
         response_hash
       end
 

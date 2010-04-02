@@ -1,3 +1,7 @@
+== 0.4.1
+* Do not delete any elements of return hash in Response, 
+we will handle this later in the process using a whitelist approach.
+
 == 0.4.0
 * Fix xmlsimple load errors by requiring rubygems first
 
