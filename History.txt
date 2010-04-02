@@ -1,3 +1,6 @@
+== 0.4.0
+* Fix xmlsimple load errors by requiring rubygems first
+
 == 0.3.0
 * Implement send_message and message_status method
 

@@ -1,3 +1,5 @@
+require 'rubygems'
+
 # Creates a wrapper namespace for the
 # rest of the API classes.
 module SmsNotify
