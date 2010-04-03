@@ -20,8 +20,10 @@ module SmsNotify
       private
       # Transforms camel-cased keys in a single
       # nested hash into underscored keys.
-      # Examples:
-      #   normalize_keys({"CamelCased"=> {"KeyOne"=>"value","keyTwo"=>"value"}}) => {"camel_cased" => {"key_one"=>"value", "key_two"=>"value"}}
+      # 
+      # == Examples:
+      #   normalize_keys({"CamelCased"=> {"KeyOne"=>"value","keyTwo"=>"value"}})
+      #   => {"camel_cased" => {"key_one"=>"value", "key_two"=>"value"}}
       def normalize_keys(hash)
         new_hash = {}
         hash.first[1].each_pair { |k,v| new_hash.merge!(underscore(k) => v) }
@@ -29,6 +31,7 @@ module SmsNotify
       end
 
       # Stolen from Rails 2.3.5
+      # 
       # http://api.rubyonrails.org/classes/ActiveSupport/Inflector.html
       def underscore(camel_cased_word)
         camel_cased_word.to_s.gsub(/::/, '/').

@@ -5,9 +5,22 @@ require 'net/https'
 
 module SmsNotify
   class Api
-    # Takes care of the trenchwork in sending API
-    # operations to the API using HTTP GET request.
+    # Takes care of the trenchwork in executing an API
+    # operation through the API in the form of an HTTP GET request.
     class Command
+      # Create a new instance that can be used to interact with the
+      # API.
+      #
+      # == Required Attributes
+      # * cmd_name
+      # * license_key
+      # 
+      # == Optional Attributes
+      # * secure (defaults to true)
+      # * opts - hash of extra options (not currently used)
+      #
+      # == Example
+      #   command = Command.new('SendSMSBasic', 'secret_key', false)
       def initialize(cmd_name, license_key, secure=true, opts={})
         @name = cmd_name
         @license_key = license_key
@@ -44,7 +57,7 @@ module SmsNotify
       end
       
       private
-      # Raises a SmsNotify::ConnectionError if HTTP response
+      # Raises an SmsNotify::ConnectionError if HTTP response
       # is not a success (response code must be 2XX).
       def handle_errors(http_response_object)
         if http_response_object.class.superclass == Net::HTTPSuccess
@@ -54,6 +67,8 @@ module SmsNotify
         end
       end
 
+      # Builds the host url including protocol, determining if
+      # HTTP or HTTPS should be used.
       def endpoint_url
         protocol = @secure ? 'https' : 'http'
         endpoint_host = SmsNotify::Api.endpoint_host
