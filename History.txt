@@ -1,3 +1,6 @@
+== 0.5.1
+* Update and improve RDoc and README documenation
+
 == 0.5.0
 * Return an actual MessageStatus object after send_message or message_status
 
