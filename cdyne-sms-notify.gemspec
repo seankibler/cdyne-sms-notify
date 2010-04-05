@@ -5,11 +5,11 @@
 
 Gem::Specification.new do |s|
   s.name = %q{cdyne-sms-notify}
-  s.version = "0.5.1"
+  s.version = "0.7.0"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["Sean Kibler"]
-  s.date = %q{2010-04-02}
+  s.date = %q{2010-04-05}
   s.email = %q{github@skiblerspot.net}
   s.extra_rdoc_files = [
     "History.txt",
@@ -25,9 +25,12 @@ Gem::Specification.new do |s|
      "lib/sms_notify.rb",
      "lib/sms_notify/api.rb",
      "lib/sms_notify/api/command.rb",
+     "lib/sms_notify/message_response.rb",
+     "lib/sms_notify/message_status.rb",
      "lib/sms_notify/response.rb",
      "lib/sms_notify/version.rb",
      "spec/api_spec.rb",
+     "spec/message_response_spec.rb",
      "spec/message_status_spec.rb",
      "spec/response_spec.rb",
      "spec/sms_notify_spec.rb",
@@ -44,6 +47,7 @@ Gem::Specification.new do |s|
      "spec/api_spec.rb",
      "spec/message_status_spec.rb",
      "spec/response_spec.rb",
+     "spec/message_response_spec.rb",
      "spec/sms_notify_spec.rb",
      "spec/base_spec.rb"
   ]

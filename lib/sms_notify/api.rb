@@ -1,11 +1,6 @@
 require 'ostruct'
 module SmsNotify
 
-  # A lazy class that uses OpenStruct to allow passing in an arbitrary hash
-  # of attributes and get a usable object out of it.
-  class MessageStatus < OpenStruct
-  end
-
   # Provides the methods that implement each of
   # the operations of the CDYNE SmsNotify! API.
   #
@@ -60,7 +55,12 @@ module SmsNotify
       command = Command.new('GetSMSStatus', license_key)
       MessageStatus.new(Response.parse(command.execute({:TextID => text_id})))
     end
-    
+
+    def message_response(text_id)
+      command = Command.new('GetSMSResponse', license_key)
+      MessageResponse.new(Response.parse(command.execute({:TextID => text_id})))
+    end
+
     Dir.glob(File.join(File.dirname(__FILE__), '/api/*')).each do |lib|
       require lib
     end

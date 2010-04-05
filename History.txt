@@ -1,3 +1,14 @@
+== 0.7.0
+* Add a MessageResponse class that generates an object with
+  attributes from a API message response
+* Move MessageStatus to a more complete class that like MessageResponse
+  will initialize a more strict object that will only generate accessible
+  attributes that describe a message status.
+* Improve RDoc and README doc
+
+== 0.6.0
+* Implement retrieving message responses from API
+
 == 0.5.1
 * Update and improve RDoc and README documenation
 

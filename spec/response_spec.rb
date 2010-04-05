@@ -30,7 +30,8 @@ EOXML
         "text_id"=>"12345678",
         "demo"=>"0",
         "scheduled_time"=>nil,
-        "responded"=>"0"
+        "responded"=>"0",
+        "xmlns"=>"http://ws.cdyne.com/SmsWS/"
       }
     }
     SmsNotify::Response.parse(@xml).should == @response_hash
