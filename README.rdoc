@@ -3,6 +3,15 @@
 This gem provides a Ruby interface to the CDYNE SMSNotify! HTTP API using GET and POST methods.
 A SOAP class may be implemented at some point.
 
+== Requirements
+Before you can use this gem you will need to have
+the following gems installed.
+
+* xml-simple >= 1.0.12
+
+== Installation
+   gem install cdyne-sms-notify
+
 == Usage
    api = SmsNotify::Api.new('your_api_key')
 
