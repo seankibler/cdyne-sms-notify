@@ -19,7 +19,7 @@ Gem::Specification.new do |s|
     ".gitignore",
      "History.txt",
      "License.txt",
-     "README.textile",
+     "README.rdoc",
      "Rakefile",
      "cdyne-sms-notify.gemspec",
      "lib/sms_notify.rb",
@@ -40,16 +40,15 @@ Gem::Specification.new do |s|
   s.homepage = %q{http://cdyne-sms-notify.github.com}
   s.rdoc_options = ["--charset=UTF-8"]
   s.require_paths = ["lib"]
-  s.rubygems_version = %q{1.3.5}
+  s.rubygems_version = %q{1.3.6}
   s.summary = %q{Ruby interface to the CDYNE SMSNotify! service.}
   s.test_files = [
-    "spec/spec_helper.rb",
-     "spec/api_spec.rb",
-     "spec/message_status_spec.rb",
-     "spec/response_spec.rb",
+    "spec/response_spec.rb",
+     "spec/spec_helper.rb",
      "spec/message_response_spec.rb",
      "spec/sms_notify_spec.rb",
-     "spec/base_spec.rb"
+     "spec/api_spec.rb",
+     "spec/message_status_spec.rb"
   ]
 
   if s.respond_to? :specification_version then
