@@ -17,6 +17,4 @@ A SOAP class may be implemented at some point.
 
 == TODO
 * Support a proxy connection
-* RDoc documentation
-* Usage documentation
-
+* Getting message responses should build an array of responses
