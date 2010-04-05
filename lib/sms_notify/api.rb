@@ -1,4 +1,3 @@
-require 'ostruct'
 module SmsNotify
 
   # Provides the methods that implement each of
