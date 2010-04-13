@@ -41,6 +41,30 @@ module SmsNotify
       MessageStatus.new(Response.parse(command.execute({:PhoneNumber => phone_number, :Message => message})))
     end
 
+    # Implements +SendSMSADvanced+[http://ws.cdyne.com/SmsWS/SMS.asmx?op=SendSMSAdvanced].
+    #
+    # == Required Attributes
+    # * phone_number
+    # * message
+    #
+    # == Optional Attributes
+    # * scheduled_time
+    # * response
+    # * response_post_url
+    #
+    # Returns an #MessageStatus object.
+    #
+    # == Example:
+    #   advanced_options = {:scheduled_time => Time.now + 3600, :response => true, :response_post_url => 'http://www.example.com/postback/url'}
+    #   api.send_advanced_message('1234567890', 'Hello world', advanced_options)
+    def send_advanced_message(phone_number, message, opts={:response => false})
+      command = Command.new('SendSMSAdvanced', license_key)
+      options[:ScheduledTime]   = opts[:scheduled_time] || ''
+      options[:Response]        = opts[:response]
+      options[:ResponsePostURL] = opts[:response_post_url] || ''
+      MessageStatus.new(Response.parse(command.execute({:PhoneNumber => phone_number, :Message => message}.merge!(options))))
+    end
+
     # Implements +GetSMSStatus+[http://ws.cdyne.com/SmsWS/SMS.asmx?op=GetSMSStatus]
     #
     # == Required Attributes
