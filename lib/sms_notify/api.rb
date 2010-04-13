@@ -58,9 +58,10 @@ module SmsNotify
     #   advanced_options = {:scheduled_time => Time.now + 3600, :response => true, :response_post_url => 'http://www.example.com/postback/url'}
     #   api.send_advanced_message('1234567890', 'Hello world', advanced_options)
     def send_advanced_message(phone_number, message, opts={:response => false})
+      options = {}
       command = Command.new('SendSMSAdvanced', license_key)
       options[:ScheduledTime]   = opts[:scheduled_time] || ''
-      options[:Response]        = opts[:response]
+      options[:Response]        = opts[:response] ? '1' : '0'
       options[:ResponsePostURL] = opts[:response_post_url] || ''
       MessageStatus.new(Response.parse(command.execute({:PhoneNumber => phone_number, :Message => message}.merge!(options))))
     end
