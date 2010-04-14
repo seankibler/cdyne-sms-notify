@@ -38,7 +38,11 @@ module SmsNotify
     #   api.send_message('1234567890', 'Hello world')
     def send_message(phone_number, message)
       command = Command.new('SendSMSBasic', license_key)
-      MessageStatus.new(Response.parse(command.execute({:PhoneNumber => phone_number, :Message => message})))
+      MessageStatus.new(
+        Response.parse(
+          command.execute({:PhoneNumber => phone_number, :Message => message})
+        )[:sms_return]
+      )
     end
 
     # Implements +GetSMSStatus+[http://ws.cdyne.com/SmsWS/SMS.asmx?op=GetSMSStatus]
@@ -52,7 +56,11 @@ module SmsNotify
     #   @api.message_status("c7d8a")
     def message_status(text_id)
       command = Command.new('GetSMSStatus', license_key)
-      MessageStatus.new(Response.parse(command.execute({:TextID => text_id})))
+      MessageStatus.new(
+        Response.parse(
+          command.execute({:TextID => text_id})
+        )[:sms_return]
+      )
     end
 
     def message_response(text_id)
