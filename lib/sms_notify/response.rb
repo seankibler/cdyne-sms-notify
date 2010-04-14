@@ -27,7 +27,7 @@ module SmsNotify
       def normalize_keys(hash)
         new_hash = {}
         hash.first[1].each_pair { |k,v| new_hash.merge!(underscore(k).to_sym => v) }
-        {underscore(hash.first[0]) => new_hash}
+        {underscore(hash.first[0]).to_sym => new_hash}
       end
 
       # Stolen from Rails 2.3.5

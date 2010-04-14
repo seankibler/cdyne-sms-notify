@@ -23,7 +23,7 @@ EOXML
 
   it "should convert an xml response body into a hash" do
     @response_hash = {
-      "sms_return" => {
+      :sms_return => {
         :status_code=>"1",
         :status_text=>"Success",
         :completed=>"1",
