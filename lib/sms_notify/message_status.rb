@@ -2,6 +2,7 @@ module SmsNotify
   # Represents an SMS message status in the form
   # of a Ruby-like object.
   class MessageStatus
+    FATAL_ERRORS = ['3', '7', '8', '9', '10', '11', '12', '13', '14']
     attr_reader :completed, :demo, :scheduled_time, :status_code, :status_text, :text_id, :received_date, :responded
 
     # Create a new instance of a #MessageStatus
@@ -24,6 +25,10 @@ module SmsNotify
       @text_id        = attrs[:text_id] || nil
       @received_date  = attrs[:received_date] || nil
       @responded      = attrs[:responded] || nil
+    end
+
+    def fatal_error?
+      FATAL_ERRORS.include?(self.status_code)
     end
   end
 end
