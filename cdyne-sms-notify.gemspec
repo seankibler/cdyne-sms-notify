@@ -5,11 +5,11 @@
 
 Gem::Specification.new do |s|
   s.name = %q{cdyne-sms-notify}
-  s.version = "0.7.1"
+  s.version = "0.8.0"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["Sean Kibler"]
-  s.date = %q{2010-04-13}
+  s.date = %q{2010-04-14}
   s.email = %q{gems@skiblerspot.net}
   s.extra_rdoc_files = [
     "History.txt",
