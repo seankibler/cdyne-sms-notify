@@ -26,7 +26,7 @@ module SmsNotify
       #   => {"camel_cased" => {"key_one"=>"value", "key_two"=>"value"}}
       def normalize_keys(hash)
         new_hash = {}
-        hash.first[1].each_pair { |k,v| new_hash.merge!(underscore(k) => v) }
+        hash.first[1].each_pair { |k,v| new_hash.merge!(underscore(k).to_sym => v) }
         {underscore(hash.first[0]) => new_hash}
       end
 

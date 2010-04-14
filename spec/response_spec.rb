@@ -24,14 +24,14 @@ EOXML
   it "should convert an xml response body into a hash" do
     @response_hash = {
       "sms_return" => {
-        "status_code"=>"1",
-        "status_text"=>"Success",
-        "completed"=>"1",
-        "text_id"=>"12345678",
-        "demo"=>"0",
-        "scheduled_time"=>nil,
-        "responded"=>"0",
-        "xmlns"=>"http://ws.cdyne.com/SmsWS/"
+        :status_code=>"1",
+        :status_text=>"Success",
+        :completed=>"1",
+        :text_id=>"12345678",
+        :demo=>"0",
+        :scheduled_time=>nil,
+        :responded=>"0",
+        :xmlns=>"http://ws.cdyne.com/SmsWS/"
       }
     }
     SmsNotify::Response.parse(@xml).should == @response_hash
