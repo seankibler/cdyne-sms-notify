@@ -10,7 +10,12 @@ the following gems installed.
 * xml-simple >= 1.0.12
 
 == Installation
+This library can be installed as a gem or a plugin and is available at Github or RubyGems.org
+
+=== Gem
    gem install cdyne-sms-notify
+=== Plugin
+   script/plugin install git://github.com/badreligion/cdyne-sms-notify.git
 
 == Usage
    api = SmsNotify::Api.new('your_api_key')
@@ -26,4 +31,5 @@ the following gems installed.
 
 == TODO
 * Support a proxy connection
+* Implement SOAP interface to support advanced and multiple messages
 * Getting message responses should build an array of responses
