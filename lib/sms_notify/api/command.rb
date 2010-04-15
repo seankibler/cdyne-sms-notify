@@ -63,7 +63,7 @@ module SmsNotify
         if http_response_object.class.superclass == Net::HTTPSuccess
           http_response_object
         else
-          raise SmsNotify::ConnectionError
+          raise SmsNotify::ConnectionError, http_response_object.body
         end
       end
 
