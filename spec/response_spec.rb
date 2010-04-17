@@ -17,15 +17,15 @@ describe "Response" do
 </SmsReturn>
 EOXML
       @response_hash = {
-        :sms_return => {
-          :status_code=>"1",
-          :status_text=>"Success",
-          :completed=>"1",
-          :text_id=>"12345678",
-          :demo=>"0",
-          :scheduled_time=>nil,
-          :responded=>"0",
-          :xmlns=>"http://ws.cdyne.com/SmsWS/",
+        "SmsReturn" => {
+          "StatusCode"=>"1",
+          "StatusText"=>"Success",
+          "Completed"=>"1",
+          "TextID"=>"12345678",
+          "Demo"=>"0",
+          "ScheduledTime"=>nil,
+          "Responded"=>"0",
+          "xmlns"=>"http://ws.cdyne.com/SmsWS/",
         }
       }
       
@@ -53,22 +53,22 @@ EOXML
 </ArrayOfSmsResponse>
 EOF
       @response_array = {
-        :array_of_sms_response => {
-          :xmlns=>"http://ws.cdyne.com/SmsWS/",
-          :sms_response => [
+        "ArrayOfSmsResponse" => {
+          "xmlns"=>"http://ws.cdyne.com/SmsWS/",
+          "SmsResponse" => [
             {
-              :response_id    => 'e3h8a2b',
-              :text_id        => 'e3dc20',
-              :status_code    => '5',
-              :received_date  => nil,
-              :message        => 'Hello'
+              "ResponseID"    => 'e3h8a2b',
+              "TextID"        => 'e3dc20',
+              "StatusCode"    => '5',
+              "ReceivedDate"  => nil,
+              "Message"        => 'Hello'
             },
             {
-              :response_id    => 'h2a0cd8',
-              :text_id        => 'c58a9d0',
-              :status_code    => '4',
-              :received_date  => nil,
-              :message        => 'Hello again'
+              "ResponseID"    => 'h2a0cd8',
+              "TextID"        => 'c58a9d0',
+              "StatusCode"    => '4',
+              "ReceivedDate"  => nil,
+              "Message"        => 'Hello again'
             }
           ]
         }
