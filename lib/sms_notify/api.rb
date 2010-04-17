@@ -45,7 +45,7 @@ module SmsNotify
       )
     end
 
-    # Implements +GetSMSStatus+[http://ws.cdyne.com/SmsWS/SMS.asmx?op=GetSMSStatus]
+    # Implements +GetSMSStatus+[http://ws.cdyne.com/SmsWS/SMS.asmx?op=GetSMSStatus].
     #
     # == Required Attributes
     # * text_id
@@ -63,9 +63,22 @@ module SmsNotify
       )
     end
 
-    def message_response(text_id)
+    # Implements +GetSMSResponse+[http://ws.cdyne.com/SmsWS/SMS.asmx?op=GetSMSResponse].
+    #
+    # == Required Attributes
+    # * text_id
+    #
+    # Returns an array of #MessageStatus objects.
+    #
+    # == Example:
+    #   @api.message_response("c7d8a")
+    def message_responses(text_id)
       command = Command.new('GetSMSResponse', license_key)
-      MessageResponse.new(Response.parse(command.execute({:TextID => text_id})))
+      MessageResponse.new(
+        Response.parse(
+          command.execute({:TextID => text_id})
+        )
+      )
     end
 
     Dir.glob(File.join(File.dirname(__FILE__), '/api/*')).each do |lib|
