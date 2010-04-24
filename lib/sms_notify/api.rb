@@ -74,11 +74,9 @@ module SmsNotify
     #   @api.message_response("c7d8a")
     def message_responses(text_id)
       command = Command.new('GetSMSResponse', license_key)
-      MessageResponse.new(
-        Response.parse(
-          command.execute({:TextID => text_id})
-        )
-      )
+      Response.parse( command.execute({:TextID => text_id}) )["ArrayOfSmsResponse"]["SmsResponse"].collect { |r| 
+				MessageResponse.new( r ) 
+			}
     end
 
     Dir.glob(File.join(File.dirname(__FILE__), '/api/*')).each do |lib|

@@ -1,6 +1,32 @@
 require File.expand_path(File.dirname(__FILE__) + '/spec_helper')
 
 module SmsNotify
+	class Api
+		class Command
+			def execute(parameters)
+				'<?xml version="1.0" encoding="utf-8"?>
+<ArrayOfSmsResponse xmlns="http://ws.cdyne.com/SmsWS/">
+  <SmsResponse>
+    <ResponseID>293948</ResponseID>
+    <TextID>32934</TextID>
+    <StatusCode>2</StatusCode>
+    <ReceivedDate></ReceivedDate>
+    <Message>Feel the burn</Message>
+  </SmsResponse>
+  <SmsResponse>
+    <ResponseID>293950</ResponseID>
+    <TextID>32934</TextID>
+    <StatusCode>5</StatusCode>
+    <ReceivedDate></ReceivedDate>
+    <Message>You got it</Message>
+  </SmsResponse>
+</ArrayOfSmsResponse>'
+			end
+		end
+	end
+end
+
+module SmsNotify
   describe "Api" do
     before(:each) do
       @api = Api.new('key')
@@ -17,6 +43,12 @@ module SmsNotify
     it "should respond to send_message" do
       @api.respond_to?('send_message').should be true
     end
+		
+		describe "message_responses" do
+			it "should return an array of MessageResponse objects" do
+				@api.message_responses('1234')
+			end
+		end	
 
     describe "Api Command" do
       before(:each) do
