@@ -2,7 +2,7 @@ module SmsNotify #:nodoc:
   module Version #:nodoc:
     MAJOR = 0
     MINOR = 8
-    TINY  = 4
+    TINY  = 5
 
     STRING = [MAJOR, MINOR, TINY].join('.')
 
