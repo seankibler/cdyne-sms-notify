@@ -5,11 +5,11 @@
 
 Gem::Specification.new do |s|
   s.name = %q{cdyne-sms-notify}
-  s.version = "0.8.4"
+  s.version = "0.8.5"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["Sean Kibler"]
-  s.date = %q{2010-04-15}
+  s.date = %q{2010-04-24}
   s.email = %q{gems@skiblerspot.net}
   s.extra_rdoc_files = [
     "History.txt",
@@ -42,15 +42,15 @@ Gem::Specification.new do |s|
   s.rdoc_options = ["--charset=UTF-8"]
   s.require_paths = ["lib"]
   s.rubyforge_project = %q{cdyne-sms-notify}
-  s.rubygems_version = %q{1.3.6}
+  s.rubygems_version = %q{1.3.5}
   s.summary = %q{Ruby interface to the CDYNE SMSNotify! service.}
   s.test_files = [
-    "spec/response_spec.rb",
-     "spec/spec_helper.rb",
-     "spec/message_response_spec.rb",
-     "spec/sms_notify_spec.rb",
+    "spec/spec_helper.rb",
      "spec/api_spec.rb",
-     "spec/message_status_spec.rb"
+     "spec/message_status_spec.rb",
+     "spec/response_spec.rb",
+     "spec/message_response_spec.rb",
+     "spec/sms_notify_spec.rb"
   ]
 
   if s.respond_to? :specification_version then
