@@ -106,7 +106,7 @@ module SmsNotify
     # Returns an array of #MessageStatus objects.
     #
     # == Example:
-    #   @api.message_response("c7d8a")
+    #   @api.message_responses("c7d8a")
     def message_responses(text_id)
       command = Command.new('GetSMSResponse', license_key)
       responses = Response.parse( command.execute({:TextID => text_id}) )["ArrayOfSmsResponse"]["SmsResponse"]
