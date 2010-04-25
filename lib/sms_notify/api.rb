@@ -60,24 +60,34 @@ module SmsNotify
 		#
 		# == Optional Attributes
 		# * scheduled_time
-		# * response
-		# * response_post_url
+		# * allow_responses
+		# * status_post_url
+    #
+    # == Example
+    #   options = { 
+    #     :allow_responses => true, 
+    #     :scheduled_time => Time.now + 60, 
+    #     :status_post_url => 'http://foo.com' 
+    #   }
+    # 
+    #   @api.send_advanced_message('1234567890', 'Affirmative!', options)
 		def send_advanced_message(phone_number, message, options={})
 			opts = {
-				:response => false, 
+				:allow_responses => false, 
 				:scheduled_time => Time.now,
-				:response_post_url => ''
+				:status_post_url => ''
 			}.merge(options) 
 
-			soap_driver.sendSMSAdvanced( :Request => {
+			result = soap_driver.sendSMSAdvanced( :Request => {
 				:PhoneNumber			=> phone_number,
 				:Message					=> message,
 				:Licensekey				=> license_key,
 				:ScheduledTime		=> opts[:scheduled_time].utc.xmlschema(2),
-				:Response					=> opts[:response],
-				:ResponsePostURL	=> opts[:response_post_url]
+				:Response					=> opts[:allow_responses],
+				:ResponsePostURL	=> opts[:status_post_url]
 				}
 			)
+      MessageStatus.new(Response.parse(result))
 		end
 
     # Implements +GetSMSStatus+[http://ws.cdyne.com/SmsWS/SMS.asmx?op=GetSMSStatus].
