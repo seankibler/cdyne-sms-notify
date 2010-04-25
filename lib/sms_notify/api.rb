@@ -1,3 +1,6 @@
+require 'soap/wsdlDriver'
+require 'time'
+
 module SmsNotify
 
   # Provides the methods that implement each of
@@ -9,7 +12,7 @@ module SmsNotify
   #
   # API WSDL - http://ws.cdyne.com/SmsWS/SMS.asmx?WSDL
   class Api
-    attr_accessor :license_key
+    attr_accessor :license_key, :soap_driver
 
     def self.endpoint_host #:nodoc:
       'ws.cdyne.com/SmsWs/SMS.asmx'
@@ -20,10 +23,14 @@ module SmsNotify
     # == Required Attributes
     # * license_key
     #
+		# == Optional Attributes
+		# * wsdl_url
+		#
     # == Examples:
     #   api = SmsNotify::Api.new('my_secret_license_key')
-    def initialize(license_key)
+    def initialize(license_key, wsdl_url='http://ws.cdyne.com/SmsWS/SMS.asmx?wsdl')
       @license_key = license_key
+			@soap_driver = SOAP::WSDLDriverFactory.new(wsdl_url).create_rpc_driver
     end
 
     # Implements +SendSMSBasic+[http://ws.cdyne.com/SmsWS/SMS.asmx?op=SendSMSBasic].
@@ -44,6 +51,34 @@ module SmsNotify
         )[:sms_return]
       )
     end
+
+		# Implements +SendSMSAdvanced+[http://ws.cdyne.com/SmsWS/SMS.asmx?op=SendSMSAdvanced].
+		#
+		# == Required Attributes
+		# * phone_number
+		# * message
+		#
+		# == Optional Attributes
+		# * scheduled_time
+		# * response
+		# * response_post_url
+		def send_advanced_message(phone_number, message, options={})
+			opts = {
+				:response => false, 
+				:scheduled_time => Time.now,
+				:response_post_url => ''
+			}.merge(options) 
+
+			soap_driver.sendSMSAdvanced( :Request => {
+				:PhoneNumber			=> phone_number,
+				:Message					=> message,
+				:Licensekey				=> license_key,
+				:ScheduledTime		=> opts[:scheduled_time].utc.xmlschema(2),
+				:Response					=> opts[:response],
+				:ResponsePostURL	=> opts[:response_post_url]
+				}
+			)
+		end
 
     # Implements +GetSMSStatus+[http://ws.cdyne.com/SmsWS/SMS.asmx?op=GetSMSStatus].
     #
@@ -74,9 +109,8 @@ module SmsNotify
     #   @api.message_response("c7d8a")
     def message_responses(text_id)
       command = Command.new('GetSMSResponse', license_key)
-      Response.parse( command.execute({:TextID => text_id}) )["ArrayOfSmsResponse"]["SmsResponse"].collect { |r| 
-				MessageResponse.new( r ) 
-			}
+      responses = Response.parse( command.execute({:TextID => text_id}) )["ArrayOfSmsResponse"]["SmsResponse"]
+			responses.is_a?(Array) ? responses.collect { |r| MessageResponse.new(r) } : MessageResponse.new(responses)
     end
 
     Dir.glob(File.join(File.dirname(__FILE__), '/api/*')).each do |lib|
