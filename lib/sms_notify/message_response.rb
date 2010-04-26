@@ -8,17 +8,17 @@ module SmsNotify
     #
     # == Example
     #   SmsNotify::MessageResponse.new(
-    #     :ResponseID => '1',
-    #     :TextID => '123',
-    #     :StatusCode => '6',
-    #     :ReceivedDate => '2010-04-03T14:29:14.7',
-    #     :Message => 'foo')
+    #     "ResponseID"    => '1',
+    #     "TextID"        => '123',
+    #     "StatusCode"    => '6',
+    #     "ReceivedDate"  => '2010-04-03T14:29:14.7',
+    #     "Message"       => 'foo')
     def initialize(attrs)
-      @response_id    = attrs["ResponseID"] || nil
-      @text_id        = attrs["TextID"] || nil
-      @status_code    = attrs["StatusCode"] || nil
+      @response_id    = attrs["ResponseID"]   || nil
+      @text_id        = attrs["TextID"]       || nil
+      @status_code    = attrs["StatusCode"]   || nil
       @received_date  = attrs["ReceivedDate"] || nil
-      @message        = attrs["Message"] || nil
+      @message        = attrs["Message"]      || nil
     end
   end
 end
