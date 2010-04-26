@@ -119,7 +119,10 @@ module SmsNotify
     #   @api.message_responses("c7d8a")
     def message_responses(text_id)
       command = Command.new('GetSMSResponse', license_key)
-      responses = Response.parse( command.execute({:TextID => text_id}) )["ArrayOfSmsResponse"]["SmsResponse"]
+      responses = Response.parse( 
+        command.execute({:TextID => text_id}) 
+      )["ArrayOfSmsResponse"]["SmsResponse"] || []
+
 			responses.is_a?(Array) ? responses.collect { |r| MessageResponse.new(r) } : MessageResponse.new(responses)
     end
 
