@@ -65,25 +65,26 @@ module SmsNotify
     #
     # == Example
     #   options = { 
-    #     :allow_responses => true, 
-    #     :scheduled_time => Time.now + 60, 
-    #     :status_post_url => 'http://foo.com' 
+    #     :enable_responses => true, 
+    #     :deliver_at       => Time.now + 60, 
+    #     :status_post_url  => 'http://foo.com' 
     #   }
     # 
     #   @api.send_advanced_message('1234567890', 'Affirmative!', options)
 		def send_advanced_message(phone_number, message, options={})
+      # set some default options but let passed in options override them
 			opts = {
-				:allow_responses => false, 
-				:scheduled_time => Time.now,
-				:status_post_url => ''
+				:enable_responses => false, 
+				:deliver_at       => Time.now,
+				:status_post_url  => ''
 			}.merge(options) 
 
 			result = soap_driver.sendSMSAdvanced( :Request => {
 				:PhoneNumber			=> phone_number,
 				:Message					=> message,
 				:Licensekey				=> license_key,
-				:ScheduledTime		=> opts[:scheduled_time].utc.xmlschema(2),
-				:Response					=> opts[:allow_responses],
+				:ScheduledTime		=> opts[:deliver_at].utc.xmlschema(2),
+				:Response					=> opts[:enable_responses],
 				:ResponsePostURL	=> opts[:status_post_url]
 				}
 			)
