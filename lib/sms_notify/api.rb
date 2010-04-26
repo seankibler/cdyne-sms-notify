@@ -104,7 +104,7 @@ module SmsNotify
       MessageStatus.new(
         Response.parse(
           command.execute({:TextID => text_id})
-        )[:sms_return]
+        )["SmsReturn"]
       )
     end
 
