@@ -6,7 +6,9 @@ module SmsNotify
     # from the wsdl driver.
     def initialize(soap_mapping_object)
       @soap_response = soap_mapping_object.send(
-        soap_mapping_object.singleton_methods[0]
+        soap_mapping_object.singleton_methods.delete_if { |m| 
+          m =~ /=$/
+        }.first
       )
     end
 
