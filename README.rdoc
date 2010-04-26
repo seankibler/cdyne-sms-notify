@@ -1,7 +1,6 @@
 = CDYNE SMS Notify
 
 This gem provides a Ruby interface to the CDYNE SMSNotify! HTTP API using GET and POST methods.
-A SOAP class may be implemented at some point.
 
 == Requirements
 Before you can use this gem you will need to have
@@ -14,6 +13,7 @@ This library can be installed as a gem or a plugin and is available at Github or
 
 === Gem
    gem install cdyne-sms-notify
+
 === Plugin
    script/plugin install git://github.com/badreligion/cdyne-sms-notify.git
 
@@ -23,13 +23,30 @@ This library can be installed as a gem or a plugin and is available at Github or
 === Sending Messages
    message = api.send_message('1234567890', 'Hello World!')
 
+=== Sending Advanced Messages
+   options = {
+     :allow_responses => true,
+     :status_post_url => 'http://postbackurl.com',
+     :scheduled_time  => Time.now + 60
+   }
+   advanced_message = api.send_advanced_message('1234567890', 'Hello World!', options)
+
 === Checking Message Status
    api.message_status(message.text_id)
 
 === Getting Message Responses
-   api.message_response(message.text_id)
+   api.message_response(advanced_message.text_id)
+
+== Gotchas
+The API contains a few gotcha's that end users should be aware of, they are
+explained below.
+
+=== Message Responses
+Gathering responses to a text message you have sent is only
+available when the message was sent using +send_advanced_message+, the
+option +allow_responses+ must be set to true.
 
 == TODO
 * Support a proxy connection
-* Implement SOAP interface to support advanced and multiple messages
-* Getting message responses should build an array of responses
+* Implement SOAP method to send multiple messages
+* Refactor code smells
