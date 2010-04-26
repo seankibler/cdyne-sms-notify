@@ -25,9 +25,9 @@ This library can be installed as a gem or a plugin and is available at Github or
 
 === Sending Advanced Messages
    options = {
-     :allow_responses => true,
-     :status_post_url => 'http://postbackurl.com',
-     :scheduled_time  => Time.now + 60
+     :enable_responses  => true,
+     :status_post_url   => 'http://postbackurl.com',
+     :deliver_at        => Time.now + 60
    }
    advanced_message = api.send_advanced_message('1234567890', 'Hello World!', options)
 
