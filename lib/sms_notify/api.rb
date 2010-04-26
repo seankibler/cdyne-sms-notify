@@ -84,7 +84,7 @@ module SmsNotify
 				:Message					=> message,
 				:Licensekey				=> license_key,
 				:ScheduledTime		=> opts[:deliver_at].utc.xmlschema(2),
-				:Response					=> opts[:enable_responses],
+				:Response					=> opts[:enable_responses] ? 1 : 0,
 				:ResponsePostURL	=> opts[:status_post_url]
 				}
 			)
