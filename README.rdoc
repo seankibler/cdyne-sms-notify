@@ -35,7 +35,7 @@ This library can be installed as a gem or a plugin and is available at Github or
    api.message_status(message.text_id)
 
 === Getting Message Responses
-   api.message_response(advanced_message.text_id)
+   api.message_responses(advanced_message.text_id)
 
 == Gotchas
 The API contains a few gotcha's that end users should be aware of, they are
