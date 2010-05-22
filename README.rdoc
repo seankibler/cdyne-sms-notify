@@ -2,6 +2,9 @@
 
 This gem provides a Ruby interface to the CDYNE SMSNotify! HTTP API using GET and POST methods.
 
+== License
+MIT/X11
+
 == Requirements
 Before you can use this gem you will need to have
 the following gems installed.
