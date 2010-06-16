@@ -9,7 +9,7 @@ describe "SmsNotify::MessageResponse" do
   end
 
   it "should only contain attributes that describe a message response" do
-    attrs = {:xmlns => 'foo', :StatusCode => '1'}
+    attrs = {"xmlns" => 'foo', "StatusCode" => '1'}
     r = SmsNotify::MessageResponse.new(attrs)
     r.respond_to?('xmlns').should be false
     r.status_code.should == '1'
