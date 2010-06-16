@@ -48,7 +48,7 @@ module SmsNotify
       MessageStatus.new(
         Response.parse(
           command.execute({:PhoneNumber => phone_number, :Message => message})
-        )[:sms_return]
+        )["SmsReturn"]
       )
     end
 
