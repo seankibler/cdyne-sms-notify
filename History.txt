@@ -1,3 +1,8 @@
+== 1.0.4
+* Fixes NoMethodError in SmsNotify::Api#send_message
+
+= Alot happens.
+
 == 0.7.0
 * Add a MessageResponse class that generates an object with
   attributes from a API message response
