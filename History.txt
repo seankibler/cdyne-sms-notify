@@ -1,3 +1,6 @@
+== 1.0.6
+* Fixes rspec rake task namespace errors.
+
 == 1.0.5
 * Fixes rspec namespace errors.
 
