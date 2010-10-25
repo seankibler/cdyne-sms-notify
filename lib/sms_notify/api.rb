@@ -1,4 +1,3 @@
-require 'soap/wsdlDriver'
 require 'time'
 
 module SmsNotify
@@ -9,28 +8,18 @@ module SmsNotify
   # API Spec PDF - http://www.cdyne.com/downloads/SPECS_SMS-Notify.pdf
   #
   # API Operations - http://ws.cdyne.com/SmsWS/SMS.asmx
-  #
-  # API WSDL - http://ws.cdyne.com/SmsWS/SMS.asmx?WSDL
   class Api
-    attr_accessor :license_key, :soap_driver
-
-    def self.endpoint_host #:nodoc:
-      'ws.cdyne.com/SmsWs/SMS.asmx'
-    end
+    attr_accessor :license_key
 
     # Create a new API instance.
     #
     # == Required Attributes
     # * license_key
     #
-		# == Optional Attributes
-		# * wsdl_url
-		#
     # == Examples:
     #   api = SmsNotify::Api.new('my_secret_license_key')
-    def initialize(license_key, wsdl_url='http://ws.cdyne.com/SmsWS/SMS.asmx?wsdl')
+    def initialize(license_key)
       @license_key = license_key
-			@soap_driver = SOAP::WSDLDriverFactory.new(wsdl_url).create_rpc_driver
     end
 
     # Implements +SendSMSBasic+[http://ws.cdyne.com/SmsWS/SMS.asmx?op=SendSMSBasic].
@@ -79,15 +68,6 @@ module SmsNotify
 				:status_post_url  => ''
 			}.merge(options) 
 
-			result = soap_driver.sendSMSAdvanced( :Request => {
-				:PhoneNumber			=> phone_number,
-				:Message					=> message,
-				:Licensekey				=> license_key,
-				:ScheduledTime		=> opts[:deliver_at].utc.xmlschema(2),
-				:Response					=> opts[:enable_responses] ? 1 : 0,
-				:ResponsePostURL	=> opts[:status_post_url]
-				}
-			)
       MessageStatus.new(Response.parse(result))
 		end
 
