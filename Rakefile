@@ -27,7 +27,8 @@ end
 task :default => :spec
 
 Rspec::Core::RakeTask.new('rcov') do |t|
-	t.rcov = true
+  t.pattern = 'spec/**/*_spec.rb'
+	t.rcov    = true
 end
 
 task :doc do
